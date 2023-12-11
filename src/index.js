@@ -7,9 +7,9 @@ import {
   Dimensions,
   TouchableOpacity,
   FlatList,
+  Image,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Foundation';
-
+import Icon from 'react-native-vector-icons/AntDesign';
 const width = Dimensions.get('screen').width;
 
 export default function TodoApp() {
@@ -30,8 +30,10 @@ export default function TodoApp() {
   };
 
   return (
-    <View>
-      <Text style={styles.textheading}>Todo App</Text>
+    <View style={{}}>
+        <Image source={require('./assets/todo1.png')} style={styles.img} />
+        <Text style={styles.textheading}>Todo App</Text>
+    
       <View style={styles.container}>
         <TextInput
           placeholder="Enter task"
@@ -51,13 +53,13 @@ export default function TodoApp() {
       ) : (
         <FlatList
           data={notes}
-          keyExtractor={(index) => index.toString()}
+          keyExtractor={index => index.toString()}
           renderItem={({item, index}) => (
             <View style={styles.viewContainer}>
               <Text style={styles.textWrapper}>{item}</Text>
               <TouchableOpacity onPress={() => clearTask(index)}>
                 <Icon
-                  name="x"
+                  name="closecircle"
                   size={30}
                   color="#4F8EF7"
                   style={styles.eraseIcon}
@@ -131,5 +133,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 10,
     padding: 10,
+  },
+  img: {
+    height: 90,
+    width: 90,
+    alignSelf: 'center',
+    marginTop: 20,
+    borderRadius: 10,
   },
 });
